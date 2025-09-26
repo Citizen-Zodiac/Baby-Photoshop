@@ -23,83 +23,21 @@ Image grayScale(Image& image)
 }
 
 
-Image rotate(Image&image)
-{
-    Image temp=image;
-
-    int rotation_degree;
-    
-    cout<<"Enter Rotation Degree: ";
-    cin>>rotation_degree;
-
-    
-    // rotate 270
-    if(rotation_degree==270)
-    {
-
-        int w=image.width;
-        image.width=image.height;
-        image.height=w;
-        for(int i=0;i<image.width;i++){
-            for(int j=0;j<image.height;j++){
-                for(int k=0;k<3;k++){
-
-                    image(i,j,k)=temp(j,i,k);
-                }
-            }
-        }
-    }
-
-
-
-    // rotate 90
-    else if(rotation_degree==90)
-    {
-        int w=image.width;
-        image.width=image.height;
-        image.height=w;
-        for(int i=image.width-1;i>=0;i--){
-            for(int j=image.height-1;j>=0;j--){
-                for(int k=0;k<3;k++){
-
-                    image(image.width-i,image.height-j,k)=temp(j,i,k);
-                }
-            }
-        }
-
-    }
-
-
-
-    // rotate 180
-    else if(rotation_degree==180)
-    {
-
-        for(int i=image.width-1;i>=0;i--){
-            for(int j=image.height-1;j>=0;j--){
-                for(int k=0;k<3;k++){
-
-                    image(image.width-i,image.height-j,k)=temp(i,j,k);
-                }
-            }
-        }
-    }
-    else{
-        cout<<"Envalid Degree"<<endl;
-        rotate(image);
-    }
-
-    return image;
-}
-
-
-
 int main(){
+    // enter image;
+    string filename;
+    cout << "Pls enter colored image name to turn to gray scale: ";
+    cin >> filename;
 
-    Image image("luffy.jpg");
-    
-    rotate(image);
+    Image image(filename);
 
-    image.saveImage("Hello.jpg");
+    // save image;
+    cout << "Pls enter image name to store new image\n";
+    cout << "and specify extension .jpg, .bmp, .png, .tga: ";
+    cin >> filename;
+
+    image.saveImage(filename);
+
+
 
 }
