@@ -22,6 +22,31 @@ Image grayScale(Image& image)
     return image;
 }
 
+Image merge(Image&image1, Image&image2)
+{
+    int w=min(image1.width,image2.width);
+    int h=min(image1.height,image2.height);
+    
+
+    Image temp(w,h);
+    for(int i=0;i<w;i++)
+    {
+        for(int j=0;j<h;j++)
+        {
+            for(int k=0;k<2;k++){
+                temp(i,j,k)=(image1(i,j,k) + image2(i,j,k)) / 2;
+            }
+        }
+        
+    }   
+
+
+    return temp;
+
+    
+}
+
+
 
 int main(){
     // enter image;
@@ -37,7 +62,6 @@ int main(){
     cin >> filename;
 
     image.saveImage(filename);
-
 
 
 }
