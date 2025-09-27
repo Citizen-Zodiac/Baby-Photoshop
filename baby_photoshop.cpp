@@ -41,21 +41,321 @@ Image merge(Image&image1, Image&image2)
     return temp;
 }
 
+void invert(Image& img) 
+{
+    for (int i = 0; i < img.width; i++) {
+        for (int j = 0; j < img.height; j++) {
+            for (int k = 0; k < img.channels; k++) {
+                img(i, j, k) = 255 - img(i, j, k);
+            }
+        }
+    }
+}
 
 
-int main(){
-    // enter image;
-    string filename;
-    cout << "Pls enter colored image name to turn to gray scale: ";
+void blur(Image& img) {
+    Image temp=img;
+    cout<<"Please Enter Blur Intensity Index From 1 : 7"<<endl;
+    int index;
+    cin >> index; if(index>7)index=7;
+    index++;
+    for (int i = 0; i < img.width; i++) {
+        for (int j = 0; j < img.height; j++) {
+
+            //Kernel Loops
+            int sum[3]={0,0,0},pixel_cnt=0;
+
+            for (int x = i-index; x <= i+index; x++) {
+                for (int y = j-index; y <= j+index; y++) {
+                    if (x>=0 && x<img.width && y>=0 && y<img.height) {
+                        sum[0] += temp(x,y,0);
+                        sum[1] += temp(x,y,1);
+                        sum[2] += temp(x,y,2);
+
+                        pixel_cnt++;
+                    }
+                }
+
+            }
+            // OverWriting The Pixel With Kernel Values
+
+                img(i, j, 0) = sum[0]/pixel_cnt;
+                img(i, j, 1) = sum[1]/pixel_cnt;
+                img(i, j, 2) = sum[2]/pixel_cnt;
+
+        }
+    }
+}
+
+void blackAndWhite(Image& image)
+{
+    const int compar_point = 128;
+    for(int i = 0; i < image.width; ++i)
+    {
+        for(int j = 0; j < image.height; ++j)
+        {
+            unsigned int avg = 0;
+            for(int k = 0; k < 3; ++k)
+            {
+                avg += image(i, j, k);
+            }
+            avg /= 3;
+            unsigned int new_pix = (avg >= compar_point) ? 255 : 0;
+            for (int k = 0; k < 3; ++k)
+            {
+                image.setPixel(i, j, k, new_pix);
+            }
+            
+        }
+    }
+
+}
+
+void flip(Image& image) 
+{
+    Image temp = image; 
+
+    int choice;     
+    cout << "Choose flip type:\n";
+    cout << "1 - Horizontal Flip (Left-Right)\n";
+    cout << "2 - Vertical Flip (Top-Bottom)\n";
+    cout << "Enter choice: ";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        for (int i = 0; i < image.width; ++i) {
+        for (int j = 0; j < image.height; ++j) {
+            for (int k = 0; k < image.channels; ++k) {
+                image(i, j, k) = temp(image.width - 1 - i, j, k);
+            }
+        }
+    }
+    }
+        
+    else if (choice == 2)
+    {
+        for (int i = 0; i < image.width; ++i) 
+        {
+            for (int j = 0; j < image.height; ++j) 
+            {    
+                for (int k = 0; k < image.channels; ++k) 
+                {
+                    image(i, j, k) = temp(i, image.height - 1 - j, k);
+                }
+            }
+        }
+    }
+    else
+        cout << "Invalid choice.\n";
+
+}
+
+void display()
+{
+    cout<<"1 -> Load a new image\n";
+    cout<<"2 -> Gray Scale\n";
+    cout<<"3 -> Merge\n";
+    cout<<"4 -> Invert\n";
+    cout<<"5 -> Blur\n";
+    cout<<"6 -> Black & White\n";
+    cout<<"7 -> Flip\n";
+    cout<<"8 -> Save the image\n";
+    cout<<"0 -> Exit\n";
+}
+
+string filename; // global to save func see it;
+void save(Image&image)
+{
+        cout<<"Save with the same name? Yes or No : ";
+        string chose;
+        cin>>chose;
+        
+        if(chose=="yes"||chose=="Yes")
+        {
+            image.saveImage(filename);
+        }
+        else
+        {
+            bool loaded = false;
+            cout << "Pls enter The Image Name with Extension: ";
+            cin >> filename;
+            while (!loaded)
+            {
+                
+                try
+                {
+                    if (filename.size() < 4) 
+                        throw invalid_argument("Filename it's short for valid extension.");
+
+                    string ex = filename.substr(filename.size()-4);
+
+                    if (ex == ".png" || ex == ".jpg" || ex == ".bmp" || ex == ".tga") {
+                        image.saveImage(filename);
+                        loaded = true;
+                    } 
+                    else {
+                        throw invalid_argument("Invalid extension! pls only (.png, .jpg, .bmp, .tga).");
+                    }
+                }
+                catch (const invalid_argument& e) 
+                {
+                    cout <<"$ "<< e.what() <<" $"<< endl;
+                    cout << "Pls enter another filename: ";
+                    cin >> filename;
+                }
+            }
+        
+        }
+        cout<<"Image Saved: "<<filename<<endl;
+}
+
+Image image;  // to see it every funcs;
+void check_filter_apply(int fn)
+{
+    string ch;
+    if(fn>0)
+    {
+        cout<<"Save current file? Yes or No: ";
+        cin>>ch;
+        if(ch=="Yes"||ch=="yes"){
+            save(image);
+        }
+    }
+}
+
+int main()
+{
+    cout << "Pls enter The Image Name with Extension: ";
     cin >> filename;
 
-    Image image(filename);
+    bool loaded = false;
 
-    // save image;
-    cout << "Pls enter image name to store new image\n";
-    cout << "and specify extension .jpg, .bmp, .png, .tga: ";
-    cin >> filename;
+    while (!loaded)
+    {
+        try{
+            image=Image(filename);
+            loaded=true;
+        }
+            
+        catch(const invalid_argument&e)
+        {
+            cout << "Invalid file! Pls enter a valid image with extension: ";
+            cin >> filename;
+        }
+    }
+        
+    
+    int c=-1; // number of choice
+    int fnum=0; // to check if apply any filters or no 
+    while(c!=0)
+    {
+        display();
+        cin>>c;
+        switch(c)
+        {
+            case 1:
+            {                
+                check_filter_apply(fnum);
+                cout << "Pls enter The Image Name with Extension: ";
+                cin >> filename;
 
-    image.saveImage(filename);
+                bool loaded_n = false;
+
+                while (!loaded_n)
+                {
+                    try{
+                        image=Image(filename);
+                        loaded_n=true;
+                    }
+                        
+                    catch(const invalid_argument&e)
+                    {
+                        cout << "Invalid file! Pls enter a valid image with extension: ";
+                        cin >> filename;
+                    }
+                }
+                break;
+            }
+    
+            case 2:
+            {
+                grayScale(image);
+                fnum++;
+                break;
+            }
+            
+            case 3:
+            {
+                Image temp=image;
+                Image image2;
+                cout<<"Pls enter another image to merge with the first: ";
+                string filename2;
+                cin>>filename2;
+                
+                bool loaded2=false;
+                while(!loaded2)
+                {
+                    try{
+                        image2=Image(filename2);
+                        loaded2=true;
+                    }
+                        
+                    catch(const invalid_argument&e)
+                    {
+                        cout << "Invalid file! Pls enter a valid image with extension: ";
+                        cin >> filename2;
+                    }
+                }
+                image=merge(temp,image2);
+                fnum++;
+                break;
+            }    
+            case 4:
+            {
+                invert(image);
+                fnum++;
+                break;
+            }
+            
+            case 5:
+            {
+                blur(image);
+                fnum++;
+                break;
+            }
+            
+
+            case 6:
+            {
+                blackAndWhite(image);
+                fnum++;
+                break;
+            }
+
+            case 7:
+            {
+                flip(image);
+                fnum++;
+                break;
+            }
+            case 8:
+            {
+                save(image);
+                break;
+            }
+            case 0:
+            {
+                check_filter_apply(fnum);
+                c=0;
+                break;
+            }
+            default :
+            {
+                display();
+                break;
+            }
+        }
+    }
 
 }
