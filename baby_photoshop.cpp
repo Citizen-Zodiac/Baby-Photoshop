@@ -62,6 +62,46 @@ void BlackAndWhite(Image& image, int compar_point = 128)
 
 }
 
+void Flip(Image& image) 
+{
+    Image temp = image; 
+
+    int choice;     
+    cout << "Choose flip type:\n";
+    cout << "1 - Horizontal Flip (Left-Right)\n";
+    cout << "2 - Vertical Flip (Top-Bottom)\n";
+    cout << "Enter choice: ";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        for (int i = 0; i < image.width; ++i) {
+        for (int j = 0; j < image.height; ++j) {
+            for (int k = 0; k < image.channels; ++k) {
+                image(i, j, k) = temp(image.width - 1 - i, j, k);
+            }
+        }
+    }
+    }
+        
+    else if (choice == 2)
+    {
+        for (int i = 0; i < image.width; ++i) 
+        {
+           for (int j = 0; j < image.height; ++j) 
+           {
+            for (int k = 0; k < image.channels; ++k) 
+            {
+                image(i, j, k) = temp(i, image.height - 1 - j, k);
+            }
+           }
+       }
+    }
+    else
+        cout << "Invalid choice.\n";
+
+}
+
 
 int main() {
     string filename;
