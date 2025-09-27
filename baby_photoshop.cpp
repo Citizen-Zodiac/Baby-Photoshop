@@ -12,19 +12,20 @@ void invert(Image& img) {
     }
 }
 void blur(Image& img) {
-    Image temp=img;
-    cout<<"Please Enter Blur Intensity Index From 1 : 7"<<endl;
+    cout<<"Please Enter Blur Intensity Index From 1 : 5"<<endl;
     int index;
-    cin >> index; if(index>7)index=7;
-    index++;
+    cin >> index; if(index>5)index=5;else if(index<=0)index=1;
+    index=index+3;
+    Image temp=img;
+    while (index--) {
     for (int i = 0; i < img.width; i++) {
         for (int j = 0; j < img.height; j++) {
 
             //Kernel Loops
             int sum[3]={0,0,0},pixel_cnt=0;
 
-            for (int x = i-index; x <= i+index; x++) {
-                for (int y = j-index; y <= j+index; y++) {
+            for (int x = i-3; x <= i+3; x++) {
+                for (int y = j-3; y <= j+3; y++) {
                     if (x>=0 && x<img.width && y>=0 && y<img.height) {
                         sum[0] += temp(x,y,0);
                         sum[1] += temp(x,y,1);
@@ -37,12 +38,14 @@ void blur(Image& img) {
             }
             // OverWriting The Pixel With Kernel Values
 
-                img(i, j, 0) = sum[0]/pixel_cnt;
-                img(i, j, 1) = sum[1]/pixel_cnt;
-                img(i, j, 2) = sum[2]/pixel_cnt;
+                temp(i, j, 0) = sum[0]/pixel_cnt;
+                temp(i, j, 1) = sum[1]/pixel_cnt;
+                temp(i, j, 2) = sum[2]/pixel_cnt;
 
         }
-    }
+     }
+    swap(img,temp);
+  }
 }
 
 int main() {
