@@ -2,7 +2,7 @@
 #include "Image_class.h"
 using namespace std;
 
-Image grayScale(Image& image)
+void grayScale(Image& image)
 {
     for(int i=0;i<image.width;i++)
     {
@@ -19,7 +19,6 @@ Image grayScale(Image& image)
             }
         }
     }
-    return image;
 }
 
 Image merge(Image&image1, Image&image2)
@@ -33,17 +32,13 @@ Image merge(Image&image1, Image&image2)
     {
         for(int j=0;j<h;j++)
         {
-            for(int k=0;k<2;k++){
+            for(int k=0;k<3;k++){
                 temp(i,j,k)=(image1(i,j,k) + image2(i,j,k)) / 2;
             }
         }
         
     }   
-
-
     return temp;
-
-    
 }
 
 
@@ -62,6 +57,5 @@ int main(){
     cin >> filename;
 
     image.saveImage(filename);
-
 
 }
