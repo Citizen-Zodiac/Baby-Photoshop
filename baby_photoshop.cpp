@@ -39,8 +39,9 @@ void blur(Image& img) {
 }
 
 
-void BlackAndWhite(Image& image, int compar_point = 128)
+void blackandwhite(Image& image)
 {
+    const int compar_point = 128;
     for(int i = 0; i < image.width; ++i)
     {
         for(int j = 0; j < image.height; ++j)
@@ -62,7 +63,7 @@ void BlackAndWhite(Image& image, int compar_point = 128)
 
 }
 
-void Flip(Image& image) 
+void flip(Image& image) 
 {
     Image temp = image; 
 
