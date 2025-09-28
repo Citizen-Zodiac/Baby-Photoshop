@@ -53,37 +53,41 @@ void invert(Image& img)
 }
 
 
-void blur(Image& img) {
-    Image temp=img;
-    cout<<"Please Enter Blur Intensity Index From 1 : 7"<<endl;
+void blur(Image& img) 
+{
+    cout<<"Please Enter Blur Intensity Index From 1 : 5"<<endl;
     int index;
-    cin >> index; if(index>7)index=7;
-    index++;
-    for (int i = 0; i < img.width; i++) {
-        for (int j = 0; j < img.height; j++) {
+    cin >> index; if(index>5)index=5;else if(index<=0)index=1;
+    index=index+3;
+    Image temp=img;
+    while (index--) {
+        for (int i = 0; i < img.width; i++) {
+            for (int j = 0; j < img.height; j++) {
 
-            //Kernel Loops
-            int sum[3]={0,0,0},pixel_cnt=0;
+                //Kernel Loops
+                int sum[3]={0,0,0},pixel_cnt=0;
 
-            for (int x = i-index; x <= i+index; x++) {
-                for (int y = j-index; y <= j+index; y++) {
-                    if (x>=0 && x<img.width && y>=0 && y<img.height) {
-                        sum[0] += temp(x,y,0);
-                        sum[1] += temp(x,y,1);
-                        sum[2] += temp(x,y,2);
+                for (int x = i-3; x <= i+3; x++) {
+                    for (int y = j-3; y <= j+3; y++) {
+                        if (x>=0 && x<img.width && y>=0 && y<img.height) {
+                            sum[0] += temp(x,y,0);
+                            sum[1] += temp(x,y,1);
+                            sum[2] += temp(x,y,2);
 
-                        pixel_cnt++;
+                            pixel_cnt++;
+                        }
                     }
+
                 }
+                // OverWriting The Pixel With Kernel Values
+
+                    temp(i, j, 0) = sum[0]/pixel_cnt;
+                    temp(i, j, 1) = sum[1]/pixel_cnt;
+                    temp(i, j, 2) = sum[2]/pixel_cnt;
 
             }
-            // OverWriting The Pixel With Kernel Values
-
-                img(i, j, 0) = sum[0]/pixel_cnt;
-                img(i, j, 1) = sum[1]/pixel_cnt;
-                img(i, j, 2) = sum[2]/pixel_cnt;
-
         }
+    swap(img,temp);
     }
 }
 
@@ -169,7 +173,7 @@ void save(Image&image)
 {
         cout<<"Save with the same name? Yes or No : ";
         string chose;
-        cin>>chose;
+        getline(cin, chose);
         
         if(chose=="yes"||chose=="Yes")
         {
@@ -179,7 +183,7 @@ void save(Image&image)
         {
             bool loaded = false;
             cout << "Pls enter The Image Name with Extension: ";
-            cin >> filename;
+            getline(cin,filename);
             while (!loaded)
             {
                 
@@ -202,7 +206,7 @@ void save(Image&image)
                 {
                     cout <<"$ "<< e.what() <<" $"<< endl;
                     cout << "Pls enter another filename: ";
-                    cin >> filename;
+                    getline(cin, filename);
                 }
             }
         
@@ -227,7 +231,7 @@ void check_filter_apply(int fn)
 int main()
 {
     cout << "Pls enter The Image Name with Extension: ";
-    cin >> filename;
+    getline(cin,filename);
 
     bool loaded = false;
 
@@ -241,7 +245,7 @@ int main()
         catch(const invalid_argument&e)
         {
             cout << "Invalid file! Pls enter a valid image with extension: ";
-            cin >> filename;
+            getline(cin,filename);
         }
     }
         
@@ -258,7 +262,7 @@ int main()
             {                
                 check_filter_apply(fnum);
                 cout << "Pls enter The Image Name with Extension: ";
-                cin >> filename;
+                getline(cin,filename);
 
                 bool loaded_n = false;
 
@@ -272,7 +276,7 @@ int main()
                     catch(const invalid_argument&e)
                     {
                         cout << "Invalid file! Pls enter a valid image with extension: ";
-                        cin >> filename;
+                        getline(cin,filename);
                     }
                 }
                 break;
@@ -291,7 +295,7 @@ int main()
                 Image image2;
                 cout<<"Pls enter another image to merge with the first: ";
                 string filename2;
-                cin>>filename2;
+                getline(cin,filename2);
                 
                 bool loaded2=false;
                 while(!loaded2)
@@ -304,7 +308,7 @@ int main()
                     catch(const invalid_argument&e)
                     {
                         cout << "Invalid file! Pls enter a valid image with extension: ";
-                        cin >> filename2;
+                        getline(cin,filename2);
                     }
                 }
                 image=merge(temp,image2);
