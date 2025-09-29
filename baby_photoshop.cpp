@@ -1,3 +1,22 @@
+/*
+    Course: CS213 "OOP" - Assignment 1 - Part 1
+    Section: 23/24
+
+    File description:
+                This program works with images by applying different filters 
+                such as (GrayScale, Merge, Invert, Blur, Black & White, and Flip). 
+                The program provides a menu that allows the user to load a new image, 
+                apply any filter, and save the image after changes.
+
+    Team members:   
+            Id                Name                    Filters
+        - 20240599      Mustafa Mahmoud     -> Implemented GrayScale, Merge
+        - 20242426      Mohamed Ebrahim    -> Implemented Invert, Blur
+        - 20242422      Hamza Mohamed     -> Implemented Black & White, Flip
+
+
+*/
+
 #include<bits/stdc++.h>
 #include "Image_class.h"
 using namespace std;
@@ -224,6 +243,12 @@ void check_filter_apply(int fn)
         cin>>ch;
         if(ch=="Yes"||ch=="yes"){
             save(image);
+        }
+        else if(ch=="No" || ch=="no"){
+            return;
+        }
+        else{
+            check_filter_apply(fn);
         }
     }
 }
