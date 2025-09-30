@@ -21,8 +21,7 @@
 #include "Image_class.h"
 using namespace std;
 
-void grayScale(Image& image)
-{
+void grayScale(Image& image) {
     for(int i=0;i<image.width;i++)
     {
         for(int j=0;j<image.height; j++)
@@ -38,6 +37,7 @@ void grayScale(Image& image)
             }
         }
     }
+}
 
 Image merge(Image&image1, Image&image2)
 {
