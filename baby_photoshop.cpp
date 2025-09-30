@@ -38,7 +38,6 @@ void grayScale(Image& image)
             }
         }
     }
-}
 
 Image merge(Image&image1, Image&image2)
 {
