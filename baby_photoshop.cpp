@@ -11,7 +11,7 @@
     Team members:   
             Id                Name                    Filters
         - 20240599      Mustafa Mahmoud     -> Implemented GrayScale, Merge
-        - 20242426      Mohamed Ebrahim    -> Implemented Invert, Blur
+        - 20242426      Mohamed Ibrahim    -> Implemented Invert, Blur
         - 20242422      Hamza Mohamed     -> Implemented Black & White, Flip
 
 
@@ -186,13 +186,14 @@ void display()
     cout<<"0 -> Exit\n";
 }
 
+int fnum; // to check if apply any filters or no And global to save func see it to rest it after save
 string filename; // global to save func see it;
 void save(Image&image)
 {
         cout<<"Save with the same name? Yes or No : ";
         string chose;
         getline(cin, chose);
-        
+
         if(chose=="yes"||chose=="Yes")
         {
             image.saveImage(filename);
@@ -204,10 +205,10 @@ void save(Image&image)
             getline(cin,filename);
             while (!loaded)
             {
-                
+
                 try
                 {
-                    if (filename.size() < 4) 
+                    if (filename.size() < 4)
                         throw invalid_argument("Filename it's short for valid extension.");
 
                     string ex = filename.substr(filename.size()-4);
@@ -215,21 +216,22 @@ void save(Image&image)
                     if (ex == ".png" || ex == ".jpg" || ex == ".bmp" || ex == ".tga") {
                         image.saveImage(filename);
                         loaded = true;
-                    } 
+                    }
                     else {
                         throw invalid_argument("Invalid extension! pls only (.png, .jpg, .bmp, .tga).");
                     }
                 }
-                catch (const invalid_argument& e) 
+                catch (const invalid_argument& e)
                 {
                     cout <<"$ "<< e.what() <<" $"<< endl;
                     cout << "Pls enter another filename: ";
                     getline(cin, filename);
                 }
             }
-        
+
         }
         cout<<"Image Saved: "<<filename<<endl;
+        fnum=0;
 }
 
 Image image;  // to see it every funcs;
@@ -240,6 +242,8 @@ void check_filter_apply(int fn)
     {
         cout<<"Save current file? Yes or No: ";
         cin>>ch;
+        cin.ignore();
+
         if(ch=="Yes"||ch=="yes"){
             save(image);
         }
@@ -251,6 +255,7 @@ void check_filter_apply(int fn)
         }
     }
 }
+
 
 int main()
 {
@@ -265,25 +270,26 @@ int main()
             image=Image(filename);
             loaded=true;
         }
-            
+
         catch(const invalid_argument&e)
         {
             cout << "Invalid file! Pls enter a valid image with extension: ";
             getline(cin,filename);
         }
     }
-        
-    
+
+    fnum=0;
     int c=-1; // number of choice
-    int fnum=0; // to check if apply any filters or no 
     while(c!=0)
     {
         display();
         cin>>c;
+        cin.ignore();
+
         switch(c)
         {
             case 1:
-            {                
+            {
                 check_filter_apply(fnum);
                 cout << "Pls enter The Image Name with Extension: ";
                 getline(cin,filename);
@@ -296,7 +302,7 @@ int main()
                         image=Image(filename);
                         loaded_n=true;
                     }
-                        
+
                     catch(const invalid_argument&e)
                     {
                         cout << "Invalid file! Pls enter a valid image with extension: ";
@@ -305,14 +311,14 @@ int main()
                 }
                 break;
             }
-    
+
             case 2:
             {
                 grayScale(image);
                 fnum++;
                 break;
             }
-            
+
             case 3:
             {
                 Image temp=image;
@@ -320,7 +326,7 @@ int main()
                 cout<<"Pls enter another image to merge with the first: ";
                 string filename2;
                 getline(cin,filename2);
-                
+
                 bool loaded2=false;
                 while(!loaded2)
                 {
@@ -328,7 +334,7 @@ int main()
                         image2=Image(filename2);
                         loaded2=true;
                     }
-                        
+
                     catch(const invalid_argument&e)
                     {
                         cout << "Invalid file! Pls enter a valid image with extension: ";
@@ -338,21 +344,21 @@ int main()
                 image=merge(temp,image2);
                 fnum++;
                 break;
-            }    
+            }
             case 4:
             {
                 invert(image);
                 fnum++;
                 break;
             }
-            
+
             case 5:
             {
                 blur(image);
                 fnum++;
                 break;
             }
-            
+
 
             case 6:
             {
@@ -370,6 +376,7 @@ int main()
             case 8:
             {
                 save(image);
+
                 break;
             }
             case 0:
