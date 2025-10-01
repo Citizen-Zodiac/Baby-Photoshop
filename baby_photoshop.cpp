@@ -186,6 +186,7 @@ void display()
     cout<<"0 -> Exit\n";
 }
 
+int fnum; // to check if apply any filters or no And global to save func see it to rest it after save
 string filename; // global to save func see it;
 void save(Image&image)
 {
@@ -230,6 +231,7 @@ void save(Image&image)
         
         }
         cout<<"Image Saved: "<<filename<<endl;
+        fnum=0;
 }
 
 Image image;  // to see it every funcs;
@@ -240,6 +242,8 @@ void check_filter_apply(int fn)
     {
         cout<<"Save current file? Yes or No: ";
         cin>>ch;
+        cin.ignore();
+
         if(ch=="Yes"||ch=="yes"){
             save(image);
         }
@@ -251,6 +255,7 @@ void check_filter_apply(int fn)
         }
     }
 }
+
 
 int main()
 {
@@ -273,13 +278,14 @@ int main()
         }
     }
         
-    
+    fnum=0;
     int c=-1; // number of choice
-    int fnum=0; // to check if apply any filters or no 
     while(c!=0)
     {
         display();
         cin>>c;
+        cin.ignore();
+
         switch(c)
         {
             case 1:
@@ -370,6 +376,7 @@ int main()
             case 8:
             {
                 save(image);
+
                 break;
             }
             case 0:
