@@ -175,6 +175,29 @@ void rotate(Image &img) {
 
     }
 }
+void frame(Image &img) {
+    int thickness = img.height / 30;
+
+    // top
+    for (int i = 0; i < img.width; i++)
+        for (int j = 0; j < thickness; j++)
+            img(i,j,0) = 255, img(i,j,1) = 0, img(i,j,2) = 0;
+
+    // bottom
+    for (int i = 0; i < img.width; i++)
+        for (int j = img.height - thickness; j < img.height; j++)
+            img(i,j,0) = 255, img(i,j,1) = 0, img(i,j,2) = 0;
+
+    // left
+    for (int i = 0; i < thickness; i++)
+        for (int j = 0; j < img.height; j++)
+            img(i,j,0) = 255, img(i,j,1) = 0, img(i,j,2) = 0;
+
+    // right
+    for (int i = img.width - thickness; i < img.width; i++)
+        for (int j = 0; j < img.height; j++)
+            img(i,j,0) = 255, img(i,j,1) = 0, img(i,j,2) = 0;
+}
 
 void blackAndWhite(Image& image)
 {
