@@ -109,6 +109,73 @@ void blur(Image& img)
     }
 }
 
+void rotate(Image &img) {
+    cout<<"1=> "<<"90 Degree Clockwise\n";
+    cout<<"2=> "<<"180 Degree Clockwise\n";
+    cout<<"3=> "<<"270 Degree Clockwise\n";
+    int no;
+    cin>>no;
+
+
+    switch(no) {
+
+            case 1: {
+                // New Dimensions
+                int new_width  = img.height;
+                int new_height = img.width;
+                Image temp(new_width, new_height);
+
+                for (int x = 0; x < img.width; x++) {
+                    for (int y = 0; y < img.height; y++) {
+                        for (int k = 0; k < img.channels; k++) {
+                            int new_x = img.height - 1 - y;
+                            int new_y = x;
+                            temp(new_x, new_y, k) = img(x, y, k);
+                        }
+                    }
+                }
+                swap(img, temp);
+                break;
+            }
+            case 2: {
+        Image temp(img.width, img.height);
+
+        for (int x = 0; x < img.width; x++) {
+            for (int y = 0; y < img.height; y++) {
+                for (int k = 0; k < img.channels; k++) {
+                    int new_x = img.width - 1 - x;
+                    int new_y = img.height - 1 - y;
+                    temp(new_x, new_y, k) = img(x, y, k);
+                }
+            }
+        }
+                swap(img, temp);
+                break;
+    }
+        case 3: {
+                int new_width  = img.height;
+                int new_height = img.width;
+                Image temp(new_width, new_height);
+
+                for (int x = 0; x < img.width; x++) {
+                    for (int y = 0; y < img.height; y++) {
+                        for (int k = 0; k < img.channels; k++) {
+                            int new_x = y;
+                            int new_y = img.width - 1 - x;
+                            temp(new_x, new_y, k) = img(x, y, k);
+                        }
+                    }
+                }
+                swap(img, temp);
+                break;
+        }
+            default: {
+                cout<<"Invalid Option";
+            }
+
+    }
+}
+
 void blackAndWhite(Image& image)
 {
     const int compar_point = 128;
