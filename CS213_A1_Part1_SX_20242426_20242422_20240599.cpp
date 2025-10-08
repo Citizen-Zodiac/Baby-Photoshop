@@ -268,6 +268,21 @@ void frame(Image &img) {
 
 
 }
+void purple(Image &img) {
+    for (int i = 0; i < img.width; i++) {
+        for (int j = 0; j < img.height; j++) {
+
+            int r = min(255,int(1.3*img(i, j, 0)));
+            int g = min(255,int(0.7*img(i, j, 1)));
+            int b = min(255,int(1.3*img(i, j, 2)));
+            img(i, j, 0) = r;
+            img(i, j, 1) = g;
+            img(i, j, 2) = b;
+
+        }
+    }
+}
+
 
 void blackAndWhite(Image& image)
 {
