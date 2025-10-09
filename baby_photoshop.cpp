@@ -3,29 +3,38 @@ Faculty of Computers and Artificial Intelligence (FCAI) - Cairo University
 Course: CS213 - Object-Oriented Programming
 Assignment 1 - Part 2  
 Professor: Dr. Mohammed El-Ramly  
-Academic Year: 2024/2025  
-Section: 23/24  
+Academic Year: Semester 1 || 2025  
+Section: 32  
 
 Video Link: 
+@Author: Hamza Mohamed
+
+
 
 Document Link: 
+@Author: Mohamed Ebrahim
+
+
+Repo Link: 
+https://github.com/zodiac37/Baby-Photoshop.git
+
 
 Diagram System Link:
 @Author: Mustafa Mahmoud 
-https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=A1.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1y4ZKj-HrFCZIQBt15y9W0xnAFGSWBACI%26export%3Ddownload
+https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&dark=auto#G1ZuO2AqYZtY3KVVo1M4YCuIxaIAEiRtnU
 
 
 Team Members:  
     ID           | Name              | Implemented Filters  
     -----------------------------------------------------  
-    20240599     | Mustafa Mahmoud   | GrayScale, Merge, Darken & Lighten, Edge Detection, Menu  
-    20242426     | Mohamed Ebrahim   | Invert, Blur, Rotate, Frame, Purple (ponus) 
-    20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop, Infrared (ponus)
+    20240599     | Mustafa Mahmoud   | GrayScale, Merge, Darken & Lighten, Edge Detection, Sunlight(bonus) and Menu  
+    20242426     | Mohamed Ebrahim   | Invert, Blur, Rotate, Frame and Purple (bonus) 
+    20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop and Infrared (bonus)
 
 Program Description:  
 This program works with images by applying different filters such as  
 ""GrayScale, Merge, Invert, Blur, Black & White,Flip, Darken & Lighten, Edge detection,
-Rotate, Add frame, Purple, Resize, Crop, Infrared"".  
+Rotate, Add frame, Purple, Resize, Crop, Infrared, Sunlight"".  
 
 It also provides a menu that allows the user to load a new image,  
 apply any filter, and save the image after modifications.
@@ -638,6 +647,22 @@ void infraredEffect(Image& image)
 
 }
 
+void sunlight(Image&image)
+{
+    for(int i=0;i<image.width;i++){
+        unsigned int avg=0;
+        for(int j=0;j<image.height;j++){
+            for(int k=0;k<3;k++){
+                avg+=image(i,j,k);
+            }
+            avg=avg/11;
+            // for increase the effect increase (avg/11) to (avg/9)  <- example
+            
+            image(i,j,2)-=avg ;            
+        }
+    }
+
+}
 
 
 
@@ -658,7 +683,8 @@ void display()
     cout<<"13 -> Edge detection\n";
     cout<<"14 -> Purple\n";
     cout<<"15 -> Infrared\n";
-    cout<<"16 -> Save the image\n";
+    cout<<"16 -> Sunlight\n";
+    cout<<"17 -> Save the image\n";
     cout<<"0  -> Exit\n";
 }
 
@@ -907,6 +933,13 @@ int main()
             }
 
             case 16:
+            {
+                sunlight(image);
+                fnum++;
+                break;
+            }
+
+            case 17:
             {
                 save(image);
                 break;
