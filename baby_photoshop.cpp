@@ -350,8 +350,8 @@ void infraredEffect(Image& image)
     {
         for (int j = 0; j < image.height; ++j)
         {
-            char red = temp(i, j, 0);
-            char intensity = red;
+            int red = temp(i, j, 0);
+            int intensity = red;
 
             image(i, j, 0) = 255;          
             image(i, j, 1) = intensity;    
@@ -360,6 +360,7 @@ void infraredEffect(Image& image)
     }
 
 }
+
 void display()
 {
     cout<<"1 -> Load a new image\n";
