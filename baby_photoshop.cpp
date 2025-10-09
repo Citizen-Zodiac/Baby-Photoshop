@@ -350,12 +350,12 @@ void infraredEffect(Image& image)
     {
         for (int j = 0; j < image.height; ++j)
         {
-            int red = temp(i, j, 0);
-            int intensity = red;
+            int intensity = temp(i, j, 0); 
+            int inverted = 255 - intensity;
 
             image(i, j, 0) = 255;          
-            image(i, j, 1) = intensity;    
-            image(i, j, 2) = intensity;    
+            image(i, j, 1) = inverted;    
+            image(i, j, 2) = inverted;    
         }
     }
 
