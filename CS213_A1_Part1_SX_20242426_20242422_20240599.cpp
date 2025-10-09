@@ -9,6 +9,8 @@ Section: 31/32
 Video Link:
 
 Document Link:
+@Author: Mohamed Ibrahim
+https://docs.google.com/document/d/12wd-_WUsd63VfDKV-3N_4SkHwdYngIee/edit?usp=sharing&ouid=109479120355123432301&rtpof=true&sd=true
 
 Diagram System Link:
 @Author: Mustafa Mahmoud
@@ -735,7 +737,7 @@ void check_filter_apply(int fn)
 
 int main()
 {
-    cout << "Pls enter The Image Name with Extension: ";
+    cout << "Pls Enter The Image Name with Extension: ";
     getline(cin,filename);
 
     bool loaded = false;
