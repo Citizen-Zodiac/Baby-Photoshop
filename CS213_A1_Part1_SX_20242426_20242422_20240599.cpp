@@ -426,6 +426,25 @@ void resize(Image& image)
     image = resizedImage;
 }
 
+void infraredEffect(Image& image)
+{
+    Image temp = image;
+
+    for (int i = 0; i < image.width; ++i)
+    {
+        for (int j = 0; j < image.height; ++j)
+        {
+            int intensity = temp(i, j, 0); 
+            int inverted = 255 - intensity;
+
+            image(i, j, 0) = 255;          
+            image(i, j, 1) = inverted;    
+            image(i, j, 2) = inverted;    
+        }
+    }
+
+}
+
 void display()
 {
     cout<<"1 -> Load a new image\n";
