@@ -176,28 +176,113 @@ void rotate(Image &img) {
     }
 }
 void frame(Image &img) {
-    int thickness = img.height / 30;
+    cout<<"Choose:"<<endl;
+    cout<<"1. Simple Frame"<<endl;
+    cout<<"2. Fancy Frame"<<endl;
+    int c;
+    cin>> c;
+    switch(c) {
+        case 1: {
+            int color_index = img.height / 30;
 
-    // top
-    for (int i = 0; i < img.width; i++)
-        for (int j = 0; j < thickness; j++)
-            img(i,j,0) = 255, img(i,j,1) = 0, img(i,j,2) = 0;
+            for (int i = 0; i < img.width; i++)
+                for (int j = 0; j < color_index; j++)
+                    img(i,j,0) = 255, img(i,j,1) = 255, img(i,j,2) = 255;
 
-    // bottom
-    for (int i = 0; i < img.width; i++)
-        for (int j = img.height - thickness; j < img.height; j++)
-            img(i,j,0) = 255, img(i,j,1) = 0, img(i,j,2) = 0;
+            for (int i = 0; i < img.width; i++)
+                for (int j = img.height - color_index; j < img.height; j++)
+                    img(i,j,0) = 255, img(i,j,1) = 255, img(i,j,2) =255;
 
-    // left
-    for (int i = 0; i < thickness; i++)
-        for (int j = 0; j < img.height; j++)
-            img(i,j,0) = 255, img(i,j,1) = 0, img(i,j,2) = 0;
+            for (int i = 0; i < color_index; i++)
+                for (int j = 0; j < img.height; j++)
+                    img(i,j,0) = 255, img(i,j,1) = 255, img(i,j,2) = 255;
 
-    // right
-    for (int i = img.width - thickness; i < img.width; i++)
-        for (int j = 0; j < img.height; j++)
-            img(i,j,0) = 255, img(i,j,1) = 0, img(i,j,2) = 0;
+            for (int i = img.width - color_index; i < img.width; i++)
+                for (int j = 0; j < img.height; j++)
+                    img(i,j,0) = 255, img(i,j,1) = 255, img(i,j,2) = 255;
+            break;
+        }
+            case 2: {
+            //In Fancy Frame I used the same idea before but in for of if conditions.
+            //In The Simple Frame it's just for clarifying the mechanism of work by dividing every side alone
+
+            int base = img.height / 100;
+            int gap = base / 2;
+
+            int emerald[3] = {0, 64, 60};
+            int bronze[3]  = {205, 127, 50};
+            int cream[3]   = {250, 240, 210};
+
+            for (int x = 0; x < img.width; x++) {
+                for (int y = 0; y < img.height; y++) {
+                    if (x < base || x >= img.width - base ||
+                        y < base || y >= img.height - base) {
+                        img(x, y, 0) = emerald[0];
+                        img(x, y, 1) = emerald[1];
+                        img(x, y, 2) = emerald[2];
+                        }
+                }
+            }
+
+            int start1 = base + gap;
+            int end_width1 = img.width - (base + gap );
+            int end_height1 = img.height - (base + gap);
+
+            for (int x = start1; x < end_width1; x++) {
+                for (int y = start1 ; y < end_height1; y++) {
+                    if (x < start1 + base || x >= end_width1 - base ||
+                        y < start1 + base || y >= end_height1 - base) {
+                        img(x, y, 0) = bronze[0];
+                        img(x, y, 1) = bronze[1];
+                        img(x, y, 2) = bronze[2];
+                        }
+                }
+            }
+
+            int start2 = start1 + base + gap;
+            int end_width2 = end_width1 - (base + gap);
+            int end_height2  = end_height1 - (base + gap);
+
+            for (int x = start2; x < end_width2; x++) {
+                for (int y = start2; y < end_height2; y++) {
+                    if (x < start2 + base || x >= end_width2 - base ||
+                        y < start2 + base || y >= end_height2 - base) {
+                        img(x, y, 0) = cream[0];
+                        img(x, y, 1) = cream[1];
+                        img(x, y, 2) = cream[2];
+                        }
+                }
+            }
+
+             break;
+
+        }
+            default: {
+            cout<<"Invalid Option"<<endl;
+            break;
+        }
+
+     }
+
+
+
+
 }
+void purple(Image &img) {
+    for (int i = 0; i < img.width; i++) {
+        for (int j = 0; j < img.height; j++) {
+
+            int r = min(255,int(1.3*img(i, j, 0)));
+            int g = min(255,int(0.7*img(i, j, 1)));
+            int b = min(255,int(1.3*img(i, j, 2)));
+            img(i, j, 0) = r;
+            img(i, j, 1) = g;
+            img(i, j, 2) = b;
+
+        }
+    }
+}
+
 
 void blackAndWhite(Image& image)
 {
@@ -262,9 +347,8 @@ void flip(Image& image)
         cout << "Invalid choice.\n";
 
 }
-
 void crop_image(Image& image)
-{       
+{
     int x, y, cropWidth, cropHeight;
 
     cout << "Enter top-left corner (x , y): ";
@@ -289,14 +373,14 @@ void crop_image(Image& image)
         }
     }
     image = croppedImage;
-} 
+}
 
 void resize(Image& image)
 {
     int choice;
     cout << "Do You Prefer Entering: [1] New Dimensions [2] ratio ?" <<  endl;
     cin >> choice;
-    
+
     int newWidth, newHeight;
     float ratio;
 
@@ -316,7 +400,7 @@ void resize(Image& image)
     {
         throw invalid_argument("Sorry, not an option");
     }
-    if (newWidth <= 0 || newHeight <= 0) 
+    if (newWidth <= 0 || newHeight <= 0)
     {
     throw invalid_argument("Resize dimensions are invalid.");
     }
@@ -337,7 +421,7 @@ void resize(Image& image)
                 resizedImage(i, j, k) = image(X, Y, k);
             }
         }
-        
+
     }
     image = resizedImage;
 }
