@@ -4,7 +4,7 @@ Course: CS213 - Object-Oriented Programming
 Assignment 1 - Part 2
 Professor: Dr. Mohammed El-Ramly
 Academic Year: 2024/2025
-Section: 23/24
+Section: 31/32
 
 Video Link:
 
@@ -19,8 +19,8 @@ Team Members:
     ID           | Name              | Implemented Filters
     -----------------------------------------------------
     20240599     | Mustafa Mahmoud   | GrayScale, Merge, Darken & Lighten, Edge Detection, Menu
-    20242426     | Mohamed Ebrahim   | Invert, Blur, Rotate, Frame, Purple (ponus)
-    20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop, Infrared (ponus)
+    20242426     | Mohamed Ibrahim   | Invert, Blur, Rotate, Frame, Purple (Bonus)
+    20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop, Infrared (Bonus)
 
 Program Description:
 This program works with images by applying different filters such as
