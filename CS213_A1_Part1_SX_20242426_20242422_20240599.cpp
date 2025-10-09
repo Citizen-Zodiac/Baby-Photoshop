@@ -347,6 +347,84 @@ void flip(Image& image)
         cout << "Invalid choice.\n";
 
 }
+void crop_image(Image& image)
+{
+    int x, y, cropWidth, cropHeight;
+
+    cout << "Enter top-left corner (x , y): ";
+    cin >> x >> y;
+    cout << "Enter crop width and height: ";
+    cin >> cropWidth >> cropHeight;
+
+    if (x < 0 || y < 0 || x + cropWidth > image.width || y + cropHeight > image.height) {
+        throw invalid_argument("Crop dimensions are out of image bounds.");
+    }
+
+    Image croppedImage(cropWidth, cropHeight);
+
+    for(int i = 0; i < cropWidth; ++i)
+    {
+        for(int j = 0; j < cropHeight; ++j)
+        {
+            for(int k = 0; k < 3; ++k)
+            {
+                croppedImage(i, j, k) = image(i + x, j + y, k);
+            }
+        }
+    }
+    image = croppedImage;
+}
+
+void resize(Image& image)
+{
+    int choice;
+    cout << "Do You Prefer Entering: [1] New Dimensions [2] ratio ?" <<  endl;
+    cin >> choice;
+
+    int newWidth, newHeight;
+    float ratio;
+
+    if(choice == 1)
+    {
+        cout << "Enter the Resize dimensions: " << endl;
+        cin >> newWidth >> newHeight;
+    }
+    else if(choice == 2)
+    {
+        cout << "Enter Scaling Ratio (Ex: 0.5 for half size): ";
+        cin >> ratio;
+        newWidth = image.width * ratio;
+        newHeight = image.height * ratio;
+    }
+    else
+    {
+        throw invalid_argument("Sorry, not an option");
+    }
+    if (newWidth <= 0 || newHeight <= 0)
+    {
+    throw invalid_argument("Resize dimensions are invalid.");
+    }
+
+    Image resizedImage(newWidth,newHeight);
+
+    float scaleX = (float)image.width / resizedImage.width;
+    float scaleY = (float)image.height / resizedImage.height;
+
+    for (int i = 0; i < resizedImage.width; ++i)
+    {
+        for (int j = 0; j < resizedImage.height; ++j)
+        {
+            int X = min((int)(i * scaleX), image.width - 1);
+            int Y = min((int)(j * scaleY), image.height - 1);
+            for(int k = 0; k < 3; ++k)
+            {
+                resizedImage(i, j, k) = image(X, Y, k);
+            }
+        }
+
+    }
+    image = resizedImage;
+}
 
 void display()
 {
