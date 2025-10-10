@@ -461,7 +461,7 @@ void frame(Image &image) {
             break;
         }
             case 2: {
-            //In Fancy Frame I used the same idea before but in for of if conditions.
+            //In Fancy Frame I used the same idea before but in form of if conditions.
             //In The Simple Frame it's just for clarifying the mechanism of work by dividing every side alone
 
             int base = image.height / 100;
@@ -529,9 +529,9 @@ void purple(Image &image) {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
 
-            int r = min(255,int(1.3*image(i, j, 0)));
-            int g = min(255,int(0.7*image(i, j, 1)));
-            int b = min(255,int(1.3*image(i, j, 2)));
+            int r = min(255,int(1.2*image(i, j, 0)));
+            int g = min(255,int(0.8*image(i, j, 1)));
+            int b = min(255,int(1.2*image(i, j, 2)));
             image(i, j, 0) = r;
             image(i, j, 1) = g;
             image(i, j, 2) = b;
@@ -679,7 +679,7 @@ void save(Image&image)
         else
         {
             bool loaded = false;
-            cout << "Pls enter The Image Name with Extension: ";
+            cout << "Pls Enter The Image Name with Extension: ";
             getline(cin,filename);
             while (!loaded)
             {
