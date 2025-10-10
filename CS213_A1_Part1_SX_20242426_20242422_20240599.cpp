@@ -8,31 +8,11 @@ Section: 32
 
 Video Link: 
 @Author: Hamza Mohamed
-
-
-Diagram System Link:
-@Author: Mustafa Mahmoud
-https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=A1.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1y4ZKj-HrFCZIQBt15y9W0xnAFGSWBACI%26export%3Ddownload
-
-
-Team Members:
-    ID           | Name              | Implemented Filters
-    -----------------------------------------------------
-    20240599     | Mustafa Mahmoud   | GrayScale, Merge, Darken & Lighten, Edge Detection, Menu
-    20242426     | Mohamed Ibrahim   | Invert, Blur, Rotate, Frame, Purple (Bonus)
-    20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop, Infrared (Bonus)
-
-Program Description:
-This program works with images by applying different filters such as
-""GrayScale, Merge, Invert, Blur, Black & White,Flip, Darken & Lighten, Edge detection,
-Rotate, Add frame, Purple, Resize, Crop, Infrared"".
-
-It also provides a menu that allows the user to load a new image,
-apply any filter, and save the image after modifications.
+https://drive.google.com/file/d/1ijgfcgeZLgXt6LOyN007oiWd4AZlsT9D/view?usp=drive_link
 
 Document Link: 
 @Author: Mohamed Ibrahim
-
+https://docs.google.com/document/d/12wd-_WUsd63VfDKV-3N_4SkHwdYngIee/edit
 
 Repo Link: 
 @Author : Mohamed Ibrahim
@@ -48,7 +28,7 @@ Team Members:
     ID           | Name              | Implemented Filters  
     -----------------------------------------------------  
     20240599     | Mustafa Mahmoud   | GrayScale, Merge, Darken & Lighten, Edge Detection, Sunlight(bonus) and Menu  
-    20242426     | Mohamed Ebrahim   | Invert, Blur, Rotate, Frame and Purple (bonus) 
+    20242426     | Mohamed Ibrahim   | Invert, Blur, Rotate, Frame and Purple (bonus) 
     20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop and Infrared (bonus)
 
 Program Description:  
