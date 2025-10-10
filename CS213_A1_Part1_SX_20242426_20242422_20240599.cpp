@@ -14,22 +14,6 @@ Diagram System Link:
 @Author: Mustafa Mahmoud
 https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=A1.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1y4ZKj-HrFCZIQBt15y9W0xnAFGSWBACI%26export%3Ddownload
 
-
-Team Members:
-    ID           | Name              | Implemented Filters
-    -----------------------------------------------------
-    20240599     | Mustafa Mahmoud   | GrayScale, Merge, Darken & Lighten, Edge Detection, Menu
-    20242426     | Mohamed Ibrahim   | Invert, Blur, Rotate, Frame, Purple
-    20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop, Infrared
-
-Program Description:
-This program works with images by applying different filters such as
-""GrayScale, Merge, Invert, Blur, Black & White,Flip, Darken & Lighten, Edge detection,
-Rotate, Add frame, Purple, Resize, Crop, Infrared"".
-
-It also provides a menu that allows the user to load a new image,
-apply any filter, and save the image after modifications.
-
 Document Link:
 @Author: Mohamed Ibrahim
 https://docs.google.com/document/d/12wd-_WUsd63VfDKV-3N_4SkHwdYngIee/edit?usp=sharing&ouid=109479120355123432301&rtpof=true&sd=true
@@ -38,6 +22,22 @@ https://docs.google.com/document/d/12wd-_WUsd63VfDKV-3N_4SkHwdYngIee/edit?usp=sh
 Repo Link:
 @Author : Mohamed Ibrahim
 https://github.com/zodiac37/Baby-Photoshop.git
+
+
+Team Members:
+    ID           | Name              | Implemented Filters
+    -----------------------------------------------------
+    20240599     | Mustafa Mahmoud   | GrayScale, Merge, Darken & Lighten, Edge Detection,Sunlight ,Menu
+    20242426     | Mohamed Ibrahim   | Invert, Blur, Rotate, Frame, Purple
+    20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop, Infrared
+
+Program Description:
+This program works with images by applying different filters such as
+""GrayScale, Merge, Invert, Blur, Black & White,Flip, Darken & Lighten, Edge detection,
+Rotate, Add frame, Purple, Resize, Crop, Infrared,Sunlight.
+
+It also provides a menu that allows the user to load a new image,
+apply any filter, and save the image after modifications.
 
 */
 
