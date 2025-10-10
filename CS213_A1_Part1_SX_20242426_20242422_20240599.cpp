@@ -954,7 +954,7 @@ int main()
 
             case 16:
             {
-                Sunlight(image);
+                sunlight(image);
                 fnum++;
                 break;
             }
