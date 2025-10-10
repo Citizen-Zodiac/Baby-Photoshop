@@ -647,6 +647,22 @@ void infraredEffect(Image& image)
 
 }
 
+void sunlight(Image&image)
+{
+    for(int i=0;i<image.width;i++){
+        unsigned int avg=0;
+        for(int j=0;j<image.height;j++){
+            for(int k=0;k<3;k++){
+                avg+=image(i,j,k);
+            }
+            avg=avg/11;
+            // for increase the effect increase (avg/11) to (avg/9)  <- example
+            
+                image(i,j,2)-=avg ;            
+        }
+    }
+
+}
 
 
 
