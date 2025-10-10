@@ -10,12 +10,32 @@ Video Link:
 @Author: Hamza Mohamed
 
 
+Diagram System Link:
+@Author: Mustafa Mahmoud
+https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=A1.drawio&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1y4ZKj-HrFCZIQBt15y9W0xnAFGSWBACI%26export%3Ddownload
+
+
+Team Members:
+    ID           | Name              | Implemented Filters
+    -----------------------------------------------------
+    20240599     | Mustafa Mahmoud   | GrayScale, Merge, Darken & Lighten, Edge Detection, Menu
+    20242426     | Mohamed Ibrahim   | Invert, Blur, Rotate, Frame, Purple (Bonus)
+    20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop, Infrared (Bonus)
+
+Program Description:
+This program works with images by applying different filters such as
+""GrayScale, Merge, Invert, Blur, Black & White,Flip, Darken & Lighten, Edge detection,
+Rotate, Add frame, Purple, Resize, Crop, Infrared"".
+
+It also provides a menu that allows the user to load a new image,
+apply any filter, and save the image after modifications.
 
 Document Link: 
-@Author: Mohamed Ebrahim
+@Author: Mohamed Ibrahim
 
 
 Repo Link: 
+@Author : Mohamed Ibrahim
 https://github.com/zodiac37/Baby-Photoshop.git
 
 
@@ -53,7 +73,7 @@ void grayScale(Image& image)
         {
             unsigned int avg=0;
             for(int k=0;k<3; k++){
-                avg += image(i,j,k); 
+                avg += image(i,j,k);
             }
             avg =avg/3;
             for(int k=0;k<3;k++)
@@ -68,7 +88,7 @@ Image merge(Image&image1, Image&image2)
 {
     int w=min(image1.width,image2.width);
     int h=min(image1.height,image2.height);
-    
+
 
     Image temp(w,h);
     for(int i=0;i<w;i++)
@@ -79,12 +99,12 @@ Image merge(Image&image1, Image&image2)
                 temp(i,j,k)=(image1(i,j,k) + image2(i,j,k)) / 2;
             }
         }
-        
-    }   
+
+    }
     return temp;
 }
 
-void invert(Image& image) 
+void invert(Image& image)
 {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
@@ -96,7 +116,7 @@ void invert(Image& image)
 }
 
 
-void blur(Image& image) 
+void blur(Image& image)
 {
     cout<<"Please Enter Blur Intensity Index From 1 : 5"<<endl;
     int index;
@@ -468,7 +488,7 @@ void frame(Image &image) {
             break;
         }
             case 2: {
-            //In Fancy Frame I used the same idea before but in for of if conditions.
+            //In Fancy Frame I used the same idea before but in form of if conditions.
             //In The Simple Frame it's just for clarifying the mechanism of work by dividing every side alone
 
             int base = image.height / 100;
@@ -536,9 +556,9 @@ void purple(Image &image) {
     for (int i = 0; i < image.width; i++) {
         for (int j = 0; j < image.height; j++) {
 
-            int r = min(255,int(1.3*image(i, j, 0)));
-            int g = min(255,int(0.7*image(i, j, 1)));
-            int b = min(255,int(1.3*image(i, j, 2)));
+            int r = min(255,int(1.2*image(i, j, 0)));
+            int g = min(255,int(0.8*image(i, j, 1)));
+            int b = min(255,int(1.2*image(i, j, 2)));
             image(i, j, 0) = r;
             image(i, j, 1) = g;
             image(i, j, 2) = b;
@@ -636,12 +656,12 @@ void infraredEffect(Image& image)
     {
         for (int j = 0; j < image.height; ++j)
         {
-            int intensity = temp(i, j, 0); 
+            int intensity = temp(i, j, 0);
             int inverted = 255 - intensity;
 
-            image(i, j, 0) = 255;          
-            image(i, j, 1) = inverted;    
-            image(i, j, 2) = inverted;    
+            image(i, j, 0) = 255;
+            image(i, j, 1) = inverted;
+            image(i, j, 2) = inverted;
         }
     }
 
@@ -703,7 +723,7 @@ void save(Image&image)
         else
         {
             bool loaded = false;
-            cout << "Pls enter The Image Name with Extension: ";
+            cout << "Pls Enter The Image Name with Extension: ";
             getline(cin,filename);
             while (!loaded)
             {
@@ -761,7 +781,7 @@ void check_filter_apply(int fn)
 
 int main()
 {
-    cout << "Pls enter The Image Name with Extension: ";
+    cout << "Pls Enter The Image Name with Extension: ";
     getline(cin,filename);
 
     bool loaded = false;
