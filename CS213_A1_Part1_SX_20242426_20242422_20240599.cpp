@@ -1,16 +1,14 @@
 /*
-Faculty of Computers and Artificial Intelligence (FCAI) - Cairo University
+Faculty of Computers and Artificial Intelligence (FCAI) - Cairo University  
 Course: CS213 - Object-Oriented Programming
-Assignment 1 - Part 2
-Professor: Dr. Mohammed El-Ramly
-Academic Year: 2024/2025
-Section: 31/32
+Assignment 1 - Part 2  
+Professor: Dr. Mohammed El-Ramly  
+Academic Year: Semester 1 || 2025  
+Section: 32  
 
-Video Link:
+Video Link: 
+@Author: Hamza Mohamed
 
-Document Link:
-@Author: Mohamed Ibrahim
-https://docs.google.com/document/d/12wd-_WUsd63VfDKV-3N_4SkHwdYngIee/edit?usp=sharing&ouid=109479120355123432301&rtpof=true&sd=true
 
 Diagram System Link:
 @Author: Mustafa Mahmoud
@@ -30,6 +28,35 @@ This program works with images by applying different filters such as
 Rotate, Add frame, Purple, Resize, Crop, Infrared"".
 
 It also provides a menu that allows the user to load a new image,
+apply any filter, and save the image after modifications.
+
+Document Link: 
+@Author: Mohamed Ibrahim
+
+
+Repo Link: 
+@Author : Mohamed Ibrahim
+https://github.com/zodiac37/Baby-Photoshop.git
+
+
+Diagram System Link:
+@Author: Mustafa Mahmoud 
+https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&dark=auto#G1ZuO2AqYZtY3KVVo1M4YCuIxaIAEiRtnU
+
+
+Team Members:  
+    ID           | Name              | Implemented Filters  
+    -----------------------------------------------------  
+    20240599     | Mustafa Mahmoud   | GrayScale, Merge, Darken & Lighten, Edge Detection, Sunlight(bonus) and Menu  
+    20242426     | Mohamed Ebrahim   | Invert, Blur, Rotate, Frame and Purple (bonus) 
+    20242422     | Hamza Mohamed     | Black & White, Flip, Resize, Crop and Infrared (bonus)
+
+Program Description:  
+This program works with images by applying different filters such as  
+""GrayScale, Merge, Invert, Blur, Black & White,Flip, Darken & Lighten, Edge detection,
+Rotate, Add frame, Purple, Resize, Crop, Infrared, Sunlight"".  
+
+It also provides a menu that allows the user to load a new image,  
 apply any filter, and save the image after modifications.
 
 */
@@ -145,17 +172,17 @@ void blackAndWhite(Image& image)
             {
                 image.setPixel(i, j, k, new_pix);
             }
-
+            
         }
     }
 
 }
 
-void flip(Image& image)
+void flip(Image& image) 
 {
-    Image temp = image;
+    Image temp = image; 
 
-    int choice;
+    int choice;     
     cout << "Choose flip type:\n";
     cout << "1 - Horizontal Flip (Left-Right)\n";
     cout << "2 - Vertical Flip (Top-Bottom)\n";
@@ -172,14 +199,14 @@ void flip(Image& image)
         }
     }
     }
-
+        
     else if (choice == 2)
     {
-        for (int i = 0; i < image.width; ++i)
+        for (int i = 0; i < image.width; ++i) 
         {
-            for (int j = 0; j < image.height; ++j)
-            {
-                for (int k = 0; k < image.channels; ++k)
+            for (int j = 0; j < image.height; ++j) 
+            {    
+                for (int k = 0; k < image.channels; ++k) 
                 {
                     image(i, j, k) = temp(i, image.height - 1 - j, k);
                 }
@@ -235,7 +262,7 @@ void detectedEdge(Image&image)
         {
             unsigned int avg=0;
             for(int k=0;k<3; k++){
-                avg += image(i,j,k);
+                avg += image(i,j,k); 
             }
             avg =avg/3;
             for(int k=0;k<3;k++)
@@ -313,10 +340,10 @@ void detectedEdge(Image&image)
 
                 }
             }
-
+        
             ix[j][i]=sx;
             iy[j][i]=sy;
-
+        
         }
     }
 
@@ -333,7 +360,7 @@ void detectedEdge(Image&image)
         for (int i=0;i<image.width; i++) {
                 sm+=mag[j][i];
         }
-
+    
     }
 
     cout<<image.height<<" "<<image.width<<endl;
@@ -351,7 +378,7 @@ void detectedEdge(Image&image)
     }
 
     for (int j=0;j<image.height; j++){
-        for (int i=0;i<image.width; i++)
+        for (int i=0;i<image.width; i++) 
         {
             for(int k=0;k<3;k++){
                 int val = mag[j][i];
@@ -362,7 +389,7 @@ void detectedEdge(Image&image)
             }
         }
     }
-
+    
 }
 
 void rotate(Image &image) {
@@ -640,6 +667,22 @@ void infraredEffect(Image& image)
 
 }
 
+void sunlight(Image&image)
+{
+    for(int i=0;i<image.width;i++){
+        unsigned int avg=0;
+        for(int j=0;j<image.height;j++){
+            for(int k=0;k<3;k++){
+                avg+=image(i,j,k);
+            }
+            avg=avg/11;
+            // for increase the effect increase (avg/11) to (avg/9)  <- example
+            
+                image(i,j,2)-=avg ;            
+        }
+    }
+
+}
 
 
 
@@ -659,8 +702,9 @@ void display()
     cout<<"12 -> Add Frame\n";
     cout<<"13 -> Edge detection\n";
     cout<<"14 -> Purple\n";
-    cout<<"15 -> Infrared\n";
-    cout<<"16 -> Save the image\n";
+    cout<<"15 -> Infrared Effect\n";
+    cout<<"16 -> Sunlight Effect\n";
+    cout<<"17 -> Save the image\n";
     cout<<"0  -> Exit\n";
 }
 
@@ -671,7 +715,7 @@ void save(Image&image)
         cout<<"Save with the same name? Yes or No : ";
         string chose;
         getline(cin, chose);
-
+        
         if(chose=="yes"||chose=="Yes")
         {
             image.saveImage(filename);
@@ -683,10 +727,10 @@ void save(Image&image)
             getline(cin,filename);
             while (!loaded)
             {
-
+                
                 try
                 {
-                    if (filename.size() < 4)
+                    if (filename.size() < 4) 
                         throw invalid_argument("Filename it's short for valid extension.");
 
                     string ex = filename.substr(filename.size()-4);
@@ -694,19 +738,19 @@ void save(Image&image)
                     if (ex == ".png" || ex == ".jpg" || ex == ".bmp" || ex == ".tga") {
                         image.saveImage(filename);
                         loaded = true;
-                    }
+                    } 
                     else {
                         throw invalid_argument("Invalid extension! pls only (.png, .jpg, .bmp, .tga).");
                     }
                 }
-                catch (const invalid_argument& e)
+                catch (const invalid_argument& e) 
                 {
                     cout <<"$ "<< e.what() <<" $"<< endl;
                     cout << "Pls enter another filename: ";
                     getline(cin, filename);
                 }
             }
-
+        
         }
         cout<<"Image Saved: "<<filename<<endl;
         fnum=0;
@@ -748,14 +792,14 @@ int main()
             image=Image(filename);
             loaded=true;
         }
-
+            
         catch(const invalid_argument&e)
         {
             cout << "Invalid file! Pls enter a valid image with extension: ";
             getline(cin,filename);
         }
     }
-
+        
     fnum=0;
     int c=-1; // number of choice
     while(c!=0)
@@ -767,9 +811,9 @@ int main()
         switch(c)
         {
             case 1:
-            {
+            {                
                 check_filter_apply(fnum);
-                cout << "Pls enter The Image Name with Extension: ";
+                cout << "Pls Enter The Image Name with Extension: ";
                 getline(cin,filename);
 
                 bool loaded_n = false;
@@ -780,7 +824,7 @@ int main()
                         image=Image(filename);
                         loaded_n=true;
                     }
-
+                        
                     catch(const invalid_argument&e)
                     {
                         cout << "Invalid file! Pls enter a valid image with extension: ";
@@ -789,14 +833,14 @@ int main()
                 }
                 break;
             }
-
+    
             case 2:
             {
                 grayScale(image);
                 fnum++;
                 break;
             }
-
+            
             case 3:
             {
                 Image temp=image;
@@ -804,7 +848,7 @@ int main()
                 cout<<"Pls enter another image to merge with the first: ";
                 string filename2;
                 getline(cin,filename2);
-
+                
                 bool loaded2=false;
                 while(!loaded2)
                 {
@@ -812,7 +856,7 @@ int main()
                         image2=Image(filename2);
                         loaded2=true;
                     }
-
+                        
                     catch(const invalid_argument&e)
                     {
                         cout << "Invalid file! Pls enter a valid image with extension: ";
@@ -822,21 +866,21 @@ int main()
                 image=merge(temp,image2);
                 fnum++;
                 break;
-            }
+            }    
             case 4:
             {
                 invert(image);
                 fnum++;
                 break;
             }
-
+            
             case 5:
             {
                 blur(image);
                 fnum++;
                 break;
             }
-
+            
 
             case 6:
             {
@@ -858,14 +902,14 @@ int main()
                 fnum++;
                 break;
             }
-
+            
             case 9:
             {
                 darken_lighten(image);
                 fnum++;
                 break;
             }
-
+            
             case 10:
             {
                 resize(image);
@@ -900,7 +944,7 @@ int main()
                 fnum++;
                 break;
             }
-
+            
             case 15:
             {
                 infraredEffect(image);
@@ -909,6 +953,13 @@ int main()
             }
 
             case 16:
+            {
+                Sunlight(image);
+                fnum++;
+                break;
+            }
+
+            case 17:
             {
                 save(image);
                 break;

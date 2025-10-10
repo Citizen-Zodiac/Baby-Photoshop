@@ -1,0 +1,61 @@
+[33mcommit 52690d0a5f5f45017b056ea4bdb4c5a247225429[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmbranch[m[33m, [m[1;31morigin/mbranch[m[33m)[m
+Author: Mustafa <mustafamah77@gmail.com>
+Date:   Mon Sep 29 18:04:27 2025 +0300
+
+    Final Part 1 with header
+
+[33mcommit be8ff0a4b88adeab9e270cd3cb6993b144ea3a24[m
+Author: Mustafa <mustafamah77@gmail.com>
+Date:   Sun Sep 28 04:32:50 2025 +0300
+
+    ubdate blur func, and replace cin->getline
+
+[33mcommit b45e5b9a1629f5231176b3710459b6c9c2e1673d[m
+Author: Mustafa <mustafamah77@gmail.com>
+Date:   Sat Sep 27 19:02:37 2025 +0300
+
+    Menu With functions Final Version
+
+[33mcommit fa9d71bb0fe8fe93471f55ec44f9e9449ed544ad[m
+Author: Mustafa <mustafamah77@gmail.com>
+Date:   Sat Sep 27 07:35:29 2025 +0300
+
+    Final Update
+
+[33mcommit a4db0921a7a51c7c58a2de9f24173718afe17874[m
+Author: Mustafa <mustafamah77@gmail.com>
+Date:   Fri Sep 26 19:46:34 2025 +0300
+
+    Add Function merge
+
+[33mcommit e39fc970b45dbd20703d947a74122f5cb9c8affa[m
+Author: Mustafa <mustafamah77@gmail.com>
+Date:   Fri Sep 26 17:49:05 2025 +0300
+
+    Add Function (grayScale)
+
+[33mcommit e3621d30f8eede809311706115fabaa3380301e0[m
+Author: Mustafa <mustafamah77@gmail.com>
+Date:   Fri Sep 26 16:48:32 2025 +0300
+
+    Add Two Functions (grayScale,rotate)
+
+[33mcommit 9d4e75efb142c3237a504777734381795695d4e9[m
+Author: Mustafa <mustafamah77@gmail.com>
+Date:   Fri Sep 26 15:40:59 2025 +0300
+
+    test
+
+[33mcommit 48ec23175a92be6790f07382ca182bf357f51ee0[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: EpicFailure <moham3dibr4him@gmail.com>
+Date:   Fri Sep 26 02:01:28 2025 +0300
+
+    Image Class Addition
+    
+    The main structure for the application also adding image classes to the repo.
+
+[33mcommit 519378f53f13b57d635d094532e7ea43bc6eed5a[m
+Author: EpicFailure <moham3dibr4him@gmail.com>
+Date:   Fri Sep 26 01:53:24 2025 +0300
+
+    Initial commit
