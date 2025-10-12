@@ -21,7 +21,7 @@ https://docs.google.com/document/d/12wd-_WUsd63VfDKV-3N_4SkHwdYngIee/edit?usp=sh
 
 Repo Link:
 @Author : Mohamed Ibrahim
-https://github.com/zodiac37/Baby-Photoshop.git
+https://github.com/Citizen-Zodiac/Baby-Photoshop.git
 
 
 Team Members:
@@ -345,9 +345,7 @@ void detectedEdge(Image&image)
 
     cout<<image.height<<" "<<image.width<<endl;
     unsigned int threshold=round((float) sm / (image.height*image.width)) ;
-    cout<<threshold<<endl;
     threshold=round((float) sm / (image.height*image.width)) *1.7;
-    cout<<threshold<<endl;
     //
 
     for (int j=0;j<image.height; j++){
